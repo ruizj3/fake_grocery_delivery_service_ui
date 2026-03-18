@@ -1,0 +1,23 @@
+# render.yaml — Render.com Infrastructure as Code
+# https://docs.render.com/infrastructure-as-code
+#
+# Deploys a single web service that:
+#   1. Builds the React client
+#   2. Runs the Express server (which serves the React build + API)
+
+services:
+  - type: web
+    name: fake-grocery-delivery-ui
+    runtime: node
+    plan: free
+    buildCommand: npm install --prefix server && npm install --prefix client && npm run build --prefix client
+    startCommand: node server/src/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false                # set manually in Render dashboard
+      - key: DB_SSL
+        value: "true"
+      - key: CORS_ORIGIN
+        value: "*"                 # update to your actual Render URL after first deploy

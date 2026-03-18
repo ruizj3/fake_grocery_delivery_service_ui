@@ -1,0 +1,13 @@
+{
+  "name": "fake-grocery-delivery-service-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React/Redux UI for viewing Fake Grocery Delivery Service database",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm start --prefix client",
+    "dev": "npm run dev:server & npm run dev:client",
+    "build": "npm run build --prefix client"
+  }
+}
