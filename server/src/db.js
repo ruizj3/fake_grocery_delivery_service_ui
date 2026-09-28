@@ -33,4 +33,10 @@ function createPool() {
 
 const pool = createPool();
 
+// Without this, an idle client error (e.g. DB closing an idle connection)
+// becomes an uncaught exception and crashes the whole process.
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle PostgreSQL client:", err.message);
+});
+
 module.exports = pool;
